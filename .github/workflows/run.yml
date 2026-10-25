@@ -1,0 +1,22 @@
+name: Run Scanner
+
+on:
+  workflow_dispatch: # Allows manual button trigger from GitHub
+  # schedule:
+  #   - cron: '0 0 * * *' # Uncomment to run every 24 hours
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build and Run
+        run: |
+          cargo run --release -- --help
+          # Replace '--help' above with whatever flags or target URLs the tool expects
